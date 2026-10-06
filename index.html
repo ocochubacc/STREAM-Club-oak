@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STREAM Innovation Club | Oakridge International</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card-bg: rgba(18, 26, 43, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --accent-purple: #7f00ff;
+      --accent-magenta: #e100ff;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(79, 172, 254, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(127, 0, 255, 0.12) 0%, transparent 45%);
+    }
+
+    h1, h2, h3, h4, .brand-logo {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 10, 18, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .brand-title p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 5rem auto 3rem;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-badge span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #000;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .pillar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.5rem;
+      border-radius: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pillar-card:hover, .pillar-card.active {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .pillar-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .pillar-detail-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .pillar-tags span {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      margin: 8px 6px 0 0;
+    }
+
+    .lab-container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .lab-controls label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .lab-controls select, .lab-controls input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #fff;
+      outline: none;
+    }
+
+    .lab-metrics {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent-cyan);
+      font-size: 0.85rem;
+    }
+
+    canvas {
+      width: 100%;
+      height: 400px;
+      background: #040711;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      cursor: crosshair;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .event-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .event-date {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .event-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      padding-top: 0.8rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+    }
+
+    .avatar-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .team-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .team-role {
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .team-grade {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-badge">S</div>
+        <div class="brand-title">
+          <h1>STREAM Club</h1>
+          <p>Oakridge International</p>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pillars">Pillars</a></li>
+          <li><a href="#lab">Interactive Lab</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#team">Officers</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="about">
+    <div class="tag-badge"><span></span> STREAM Club • SY 2026–2027</div>
+    <h1>Innovate, Design & Build <br>With <span>STREAM Excellence</span></h1>
+    <p>Oakridge International School's premier hub for cross-disciplinary discovery. Combining Science, Technology, Research, Engineering, Architecture, and Mathematics to solve real-world challenges.</p>
+    <a href="#schedule" class="btn-primary">Explore Calendar</a>
+  </section>
+
+  <section id="pillars">
+    <div class="section-header">
+      <h2>The 6 Pillars of STREAM</h2>
+      <p>Select a pillar to explore its core focus inside our curriculum</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card active" onclick="selectPillar(0)">
+        <div class="pillar-icon">🔬</div>
+        <div class="pillar-title">Science</div>
+      </div>
+      <div class="pillar-card" onclick="selectPillar(1)">
+        <div class="pillar-icon">💻</div>
+        <div class="pillar-title">Technology</div>
+      </div>
+      <div class="pillar-card" onclick="selectPillar(2)">
+        <div class="pillar-icon">📊</div>
+        <div class="pillar-title">Research</div>
+      </div>
+      <div class="pillar-card" onclick="selectPillar(3)">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title">Engineering</div>
+      </div>
+      <div class="pillar-card" onclick="selectPillar(4)">
+        <div class="pillar-icon">🏛️</div>
+        <div class="pillar-title">Architecture</div>
+      </div>
+      <div class="pillar-card" onclick="selectPillar(5)">
+        <div class="pillar-icon">📐</div>
+        <div class="pillar-title">Math</div>
+      </div>
+    </div>
+
+    <div class="pillar-detail-box" id="pillar-detail">
+      <h3 id="pillar-name" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Science Focus</h3>
+      <p id="pillar-desc" style="color: var(--text-muted); font-size: 0.95rem;">Investigating natural phenomena through experimental design, biology, and chemistry labs. Members conduct systematic investigations to analyze environmental and physical science topics.</p>
+      <div class="pillar-tags" id="pillar-tags">
+        <span>Experimental Design</span>
+        <span>Hypothesis Testing</span>
+        <span>Data Analysis</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="lab">
+    <div class="section-header">
+      <h2>Interactive STREAM Physics & Geometry Lab</h2>
+      <p>Click and drag inside the canvas to interact with physical simulations!</p>
+    </div>
+
+    <div class="lab-container">
+      <div class="lab-controls">
+        <h4 style="margin-bottom: 1rem;">Simulation Engine</h4>
+        <label>Select Experiment</label>
+        <select id="simMode" onchange="resetSim()">
+          <option value="particles">Particle Physics & Gravity Wells</option>
+          <option value="pendulum">Chaotic Double Pendulum</option>
+          <option value="gears">Gear Transmission Mechanics</option>
+          <option value="hypercube">4D Tesseract Rotation</option>
+        </select>
+
+        <label>Parameter Control</label>
+        <input type="range" id="simParam" min="1" max="10" value="5">
+
+        <div class="lab-metrics">
+          <div><strong>Status:</strong> Engine Active</div>
+          <div id="simStats">Mode: Gravity Wells</div>
+        </div>
+      </div>
+
+      <div>
+        <canvas id="simCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="section-header">
+      <h2>SY 2026–2027 Calendar</h2>
+      <p>Fridays directly after school (3:25 PM – 4:20 PM) in Grade 10 Classroom</p>
+    </div>
+
+    <div class="calendar-grid">
+      <div class="event-card">
+        <div class="event-date">OCT 9, 2026</div>
+        <div class="event-title">First Project Formation</div>
+        <div class="event-desc">Forming collaborative research teams and choosing the initial Science & Research focus topics.</div>
+        <div class="event-meta">
+          <span>📍 Grade 10 Classroom</span>
+          <span>Research</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">NOV 6, 2026</div>
+        <div class="event-title">Architecture & Math Challenge</div>
+        <div class="event-desc">Establishing project teams and defining mathematical and structural architectural design goals.</div>
+        <div class="event-meta">
+          <span>📍 Grade 10 Classroom</span>
+          <span>Architecture</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">DEC 4, 2026</div>
+        <div class="event-title">Festive STREAM Builds</div>
+        <div class="event-desc">Applying STREAM concepts through festive, creative holiday-themed engineering prototypes.</div>
+        <div class="event-meta">
+          <span>📍 Grade 10 Classroom</span>
+          <span>Creative</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">JAN 2027 (WEEK 1)</div>
+        <div class="event-title">Concepts Refresh & Practice</div>
+        <div class="event-desc">Refresher session to practice core technical skills and coding frameworks after holiday break.</div>
+        <div class="event-meta">
+          <span>📍 Grade 10 Classroom</span>
+          <span>Skill Building</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">FEB 5, 2027</div>
+        <div class="event-title">Tech & Engineering Builds</div>
+        <div class="event-desc">Assembling final project groups and initiating prototype assembly for high-tech robotics and hardware.</div>
+        <div class="event-meta">
+          <span>📍 Grade 10 Classroom</span>
+          <span>Engineering</span>
+        </div>
+      </div>
+
+      <div class="event-card" style="border-color: var(--accent-cyan);">
+        <div class="event-date">MARCH 17, 2027</div>
+        <div class="event-title">STREAM Exhibition Showcase</div>
+        <div class="event-desc">Culminating Science Fair and interactive exhibition displaying member capstone projects to Oakridge.</div>
+        <div class="event-meta">
+          <span>📍 School Quad</span>
+          <span>Exhibition</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="section-header">
+      <h2>Club Officers & Leadership</h2>
+      <p>Meet the founding student council leading STREAM Innovation Club</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar-circle">LP</div>
+        <div class="team-name">Lois Anaiah Pugal</div>
+        <div class="team-role">President</div>
+        <div class="team-grade">Grade 8 Beavers</div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar-circle">LM</div>
+        <div class="team-name">Lea Mhae</div>
+        <div class="team-role">Vice President</div>
+        <div class="team-grade">Grade 10 Commodores</div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar-circle">SS</div>
+        <div class="team-name">Sumeet M. Singh</div>
+        <div class="team-role">Secretary</div>
+        <div class="team-grade">Grade 7 Engineers</div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar-circle">LJ</div>
+        <div class="team-name">Linjoln Jace</div>
+        <div class="team-role">Treasurer</div>
+        <div class="team-grade">Grade 10 Commodores</div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar-circle">SP</div>
+        <div class="team-name">Sachi Paran</div>
+        <div class="team-role">Public Relations</div>
+        <div class="team-grade">Grade 10 Commodores</div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar-circle" style="background: linear-gradient(135deg, var(--accent-magenta), var(--accent-blue));">JD</div>
+        <div class="team-name">Sir Jenard De Vera</div>
+        <div class="team-role">Faculty Adviser</div>
+        <div class="team-grade">High School Dept.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Oakridge International School of Young Leaders — Student Affairs Office</p>
+    <p style="margin-top: 4px;">STREAM Innovation Club (SY 2026–2027) • Lead. Serve. Grow.</p>
+  </footer>
+
+  <script>
+    const pillars = [
+      {
+        name: "Science Focus",
+        desc: "Investigating natural phenomena through experimental design, biology, and chemistry labs. Members conduct systematic investigations to analyze environmental and physical science topics.",
+        tags: ["Experimental Design", "Hypothesis Testing", "Data Analysis"]
+      },
+      {
+        name: "Technology Focus",
+        desc: "Exploring software development, modern web scripting, robotics, and digital automation. Building real-world digital tools and interactive software applications.",
+        tags: ["Web Scripting", "Algorithms", "Robotics", "UI Design"]
+      },
+      {
+        name: "Research Focus",
+        desc: "Developing analytical inquiry methods, critical literature reviews, and evidence-based problem solving to tackle contemporary challenges.",
+        tags: ["Data Collection", "Technical Writing", "Case Studies"]
+      },
+      {
+        name: "Engineering Focus",
+        desc: "Applying structural design, mechanics, and physical prototyping to create functional mechanisms and solve physical engineering tasks.",
+        tags: ["Gear Dynamics", "Prototyping", "CAD & Structural"]
+      },
+      {
+        name: "Architecture Focus",
+        desc: "Integrating geometric spatial reasoning, structural aesthetics, scale modeling, and blueprint design for modern sustainable structures.",
+        tags: ["3D Spatial Design", "Scale Modeling", "Blueprint Drafting"]
+      },
+      {
+        name: "Mathematics Focus",
+        desc: "Unlocking algebraic beauty, parametric geometry, 3D/4D visualizers, and computational math models through creative algorithms.",
+        tags: ["Parametric Geometry", "Matrix Calculations", "Algorithms"]
+      }
+    ];
+
+    function selectPillar(index) {
+      const cards = document.querySelectorAll('.pillar-card');
+      cards.forEach((card, i) => card.classList.toggle('active', i === index));
+      const p = pillars[index];
+      document.getElementById('pillar-name').innerText = p.name;
+      document.getElementById('pillar-desc').innerText = p.desc;
+      document.getElementById('pillar-tags').innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
+    }
+
+    const canvas = document.getElementById('simCanvas');
+    const ctx = canvas.getContext('2d');
+    let mouse = { x: -1000, y: -1000, down: false };
+
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = 400;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    canvas.addEventListener('mousedown', () => mouse.down = true);
+    canvas.addEventListener('mouseup', () => mouse.down = false);
+
+    let particles = [];
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * 800,
+        y: Math.random() * 400,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        radius: Math.random() * 3 + 2
+      });
+    }
+
+    let angle = 0;
+
+    function draw() {
+      ctx.fillStyle = 'rgba(4, 7, 17, 0.25)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const mode = document.getElementById('simMode').value;
+      const param = parseFloat(document.getElementById('simParam').value);
+
+      if (mode === 'particles') {
+        document.getElementById('simStats').innerText = 'Interactive Particle Attractor (Click to attract)';
+        particles.forEach(p => {
+          if (mouse.down) {
+            let dx = mouse.x - p.x;
+            let dy = mouse.y - p.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 300) {
+              p.vx += (dx / dist) * 0.4;
+              p.vy += (dy / dist) * 0.4;
+            }
+          }
+
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.98;
+          p.vy *= 0.98;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.fillStyle = '#00f2fe';
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      } else if (mode === 'hypercube') {
+        document.getElementById('simStats').innerText = '4D Hypercube Tesseract Projection';
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const size = param * 15;
+
+        ctx.save();
+        ctx.translate(cx, cy);
+
+        let vertices = [
+          [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+          [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+        ];
+
+        let projected = vertices.map(v => {
+          let x = v[0] * size;
+          let y = v[1] * size;
+          let z = v[2] * size;
+
+          let rx = x * Math.cos(angle) - z * Math.sin(angle);
+          let rz = x * Math.sin(angle) + z * Math.cos(angle);
+          let ry = y * Math.cos(angle * 0.5) - rz * Math.sin(angle * 0.5);
+
+          return [rx, ry];
+        });
+
+        ctx.strokeStyle = '#e100ff';
+        ctx.lineWidth = 2;
+
+        for (let i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.moveTo(projected[i][0], projected[i][1]);
+          ctx.lineTo(projected[(i + 1) % 4][0], projected[(i + 1) % 4][1]);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(projected[i + 4][0], projected[i + 4][1]);
+          ctx.lineTo(projected[((i + 1) % 4) + 4][0], projected[((i + 1) % 4) + 4][1]);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(projected[i][0], projected[i][1]);
+          ctx.lineTo(projected[i + 4][0], projected[i + 4][1]);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      } else if (mode === 'gears') {
+        document.getElementById('simStats').innerText = 'Engine Transmission Mesh Gear Ratio';
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        ctx.save();
+        ctx.translate(cx - 80, cy);
+        drawGear(60, param * 2, angle, '#00f2fe');
+        ctx.restore();
+
+        ctx.save();
+        ctx.translate(cx + 80, cy);
+        drawGear(80, param * 2, -angle * 0.75, '#7f00ff');
+        ctx.restore();
+      } else if (mode === 'pendulum') {
+        document.getElementById('simStats').innerText = 'Chaotic Motion Dynamics';
+        const cx = canvas.width / 2;
+        const cy = 100;
+
+        let x1 = cx + 120 * Math.sin(angle);
+        let y1 = cy + 120 * Math.cos(angle);
+        let x2 = x1 + 100 * Math.sin(angle * 2);
+        let y2 = y1 + 100 * Math.cos(angle * 2);
+
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#00f2fe';
+        ctx.beginPath();
+        ctx.arc(x1, y1, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#e100ff';
+        ctx.beginPath();
+        ctx.arc(x2, y2, 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      angle += 0.03;
+      requestAnimationFrame(draw);
+    }
+
+    function drawGear(radius, teeth, rot, color) {
+      ctx.rotate(rot);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let i = 0; i < teeth; i++) {
+        let a = (i * Math.PI * 2) / teeth;
+        let x = (radius + 10) * Math.cos(a);
+        let y = (radius + 10) * Math.sin(a);
+        ctx.fillRect(x - 5, y - 5, 10, 10);
+      }
+    }
+
+    function resetSim() {
+      angle = 0;
+    }
+
+    draw();
+  </script>
+</body>
+</html>
